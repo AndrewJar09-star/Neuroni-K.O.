@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ============================================================
+   NEURONI K.O.! — Global Design System
+   ============================================================ */
+
+:root {
+  --yellow: #FFD600;
+  --red: #FF2A85;
+  --cyan: #00E5FF;
+  --purple: #8A2BE2;
+  --orange: #FF8800;
+  --dark: #0D0D0D;
+  --white: #FFFFFF;
+}
+
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Fredoka', sans-serif;
+  background-color: #00B8D4;
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ---- Halftone dot background pattern ---- */
+.halftone-bg {
+  background-color: transparent;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.18) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+
+/* ---- Neo-brutalist card / button base ---- */
+.neo-card {
+  border: 4px solid #000;
+  border-radius: 16px;
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  transition: box-shadow 0.08s ease, transform 0.08s ease;
+}
+
+.neo-btn {
+  border: 4px solid #000;
+  border-radius: 14px;
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+  cursor: pointer;
+  transition: box-shadow 0.08s ease, transform 0.08s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.neo-btn:active {
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+  transform: translate(5px, 5px);
+}
+
+/* ---- Speech bubble (domanda - White / Cream Pop-Art) ---- */
+.speech-bubble {
+  position: relative;
+  background-color: #FFFDF5;
+  border: 4px solid #000;
+  border-radius: 20px;
+  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: #000 transparent transparent transparent;
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 11px 9px 0 9px;
+  border-style: solid;
+  border-color: #FFFDF5 transparent transparent transparent;
+  z-index: 1;
+}
+
+/* ---- Logo fonts ---- */
+.font-bangers { font-family: 'Bangers', cursive; }
+
+/* ---- Timer fuse ---- */
+@keyframes pulse-fuse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.15); }
+}
+
+.fuse-pulse {
+  animation: pulse-fuse 0.5s ease-in-out infinite;
+}
+
+/* ---- Answer button colors (4 Colori Pop Vibranti) ---- */
+.answer-a { background-color: #FFD600 !important; color: #000000 !important; }
+.answer-b { background-color: #FF2A85 !important; color: #FFFFFF !important; }
+.answer-c { background-color: #00FF66 !important; color: #000000 !important; }
+.answer-d { background-color: #8A2BE2 !important; color: #FFFFFF !important; }
+
+.answer-correct { background-color: #00FF66 !important; color: #000000 !important; box-shadow: 0 0 18px #00FF66, 6px 6px 0px #000 !important; }
+.answer-wrong   { background-color: #333333 !important; color: #888888 !important; opacity: 0.65; }
+
+/* ---- Onomatopoeia text ---- */
+.onomatopoeia {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 3px;
+  text-shadow:
+    4px 4px 0 #000,
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000;
+}
+
+/* ---- Explosion badge ---- */
+.explosion-badge {
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%,
+    79% 91%, 50% 70%, 21% 91%, 32% 57%,
+    2% 35%, 39% 35%
+  );
+}
+
+/* ---- Avatar selector ---- */
+.avatar-option {
+  border: 4px solid transparent;
+  border-radius: 50%;
+  transition: border-color 0.1s, transform 0.1s;
+  cursor: pointer;
+  font-size: 2.2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-option.selected {
+  border-color: var(--yellow);
+  background: rgba(255,214,0,0.15);
+  transform: scale(1.15);
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1a1a1a; }
+::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 3px; }
+
+/* ---- Mobile viewport ---- */
+.game-container {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- Comic Sabotage Animations & Helpers ---- */
+@keyframes comic-shake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-4px, 2px) rotate(-2deg); }
+  40% { transform: translate(4px, -2px) rotate(2deg); }
+  60% { transform: translate(-3px, -2px) rotate(-1deg); }
+  80% { transform: translate(3px, 1px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.shake-active {
+  animation: comic-shake 0.3s ease-in-out;
+}
+
+@keyframes comic-rumble {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 1px) rotate(-0.5deg); }
+  75% { transform: translate(2px, -1px) rotate(0.5deg); }
+}
+
+.rumble-active {
+  animation: comic-rumble 0.2s infinite;
+}
+
+.comic-wood {
+  background: repeating-linear-gradient(
+    45deg,
+    #8b4513,
+    #8b4513 12px,
+    #a0522d 12px,
+    #a0522d 24px
+  );
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.comic-burst {
+  background: radial-gradient(circle, #ffd600 20%, #ff2a85 70%, #0d0d0d 100%);
+}
+
+/* ---- Screen Shake Animation for Impact & Wrong Answers ---- */
+@keyframes screen-shake-intense {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  15% { transform: translate(-10px, 6px) rotate(-1.5deg); }
+  30% { transform: translate(10px, -6px) rotate(1.5deg); }
+  45% { transform: translate(-8px, -4px) rotate(-1deg); }
+  60% { transform: translate(8px, 4px) rotate(1deg); }
+  75% { transform: translate(-4px, 2px) rotate(-0.5deg); }
+  90% { transform: translate(4px, -2px) rotate(0.5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.screen-shake {
+  animation: screen-shake-intense 0.45s ease-in-out;
+}
+
+/* ---- TV Studio Pop-Art Sunburst & Spotlights ---- */
+@keyframes sunburst-slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.popart-sunburst {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    #00E5FF 0deg 11.25deg,
+    #00B8D4 11.25deg 22.5deg
+  );
+  animation: sunburst-slow-spin 80s linear infinite;
+  pointer-events: none;
+}
+
+.popart-halftone-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.22) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+
+.popart-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 45%, rgba(0, 0, 0, 0.6) 100%);
+  pointer-events: none;
+}
+
+/* TV Spotlights (Fasci di Luce conici) */
+@keyframes tv-spotlight-left-swing {
+  0%, 100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(26deg);
+  }
+}
+
+@keyframes tv-spotlight-right-swing {
+  0%, 100% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-26deg);
+  }
+}
+
+.tv-spotlight-left {
+  position: absolute;
+  top: -30px;
+  left: -40px;
+  width: 320px;
+  height: 650px;
+  clip-path: polygon(15% 0%, 35% 0%, 100% 100%, 0% 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 235, 59, 0.22) 35%,
+    rgba(255, 214, 0, 0.08) 70%,
+    transparent 100%
+  );
+  transform-origin: top left;
+  animation: tv-spotlight-left-swing 6s ease-in-out infinite;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  filter: blur(8px);
+}
+
+.tv-spotlight-right {
+  position: absolute;
+  top: -30px;
+  right: -40px;
+  width: 320px;
+  height: 650px;
+  clip-path: polygon(65% 0%, 85% 0%, 100% 100%, 0% 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 235, 59, 0.22) 35%,
+    rgba(255, 214, 0, 0.08) 70%,
+    transparent 100%
+  );
+  transform-origin: top right;
+  animation: tv-spotlight-right-swing 6.5s ease-in-out infinite;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  filter: blur(8px);
+}
+
+/* Camerino Mirror Vanity Bulbs */
+@keyframes bulb-pulse {
+  0%, 100% {
+    box-shadow: 0 0 6px #FFD600, 0 0 12px rgba(255, 214, 0, 0.85);
+    filter: brightness(1.1);
+  }
+  50% {
+    box-shadow: 0 0 2px #FFA000, 0 0 5px rgba(255, 160, 0, 0.45);
+    filter: brightness(0.85);
+  }
+}
+
+.camerino-bulb {
+  animation: bulb-pulse 1.8s ease-in-out infinite alternate;
+}
+
+.camerino-bulb:nth-child(even) {
+  animation-delay: 0.4s;
+}
+
+/* Comic Speech Bubble Pointer */
+.comic-speech-bubble {
+  position: relative;
+  background-color: #FFFFFF;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.comic-speech-bubble::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 18px;
+  border-width: 8px 14px 8px 0;
+  border-style: solid;
+  border-color: transparent #000 transparent transparent;
+}
+
+.comic-speech-bubble::after {
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 20px;
+  border-width: 6px 10px 6px 0;
+  border-style: solid;
+  border-color: transparent #FFF transparent transparent;
+}
+
+
